@@ -1,0 +1,188 @@
+--4.selectGroupFunction.sql
+-- 그룹(집게)함수란? 다수의 행 데이터를 한번에 처리
+-- 장점 : 함수 연산시 null 데이터 미리 고려해서 유효값 값에 한해서만
+-- 연산후 리턴, sql문장 작업 용이
+/*
+1. count() : 개수 확인 함수
+2. sum() : 합계 함수
+3. avg() : 평균
+4. max(), min() : 최대값, 최소값
+*/
+
+
+/* 기본 문법
+1. select절
+  from 절
+  where절
+2. select 절
+  from 절
+  where 절
+  order by 절
+3.select 절
+  from 절
+  group by 절
+  having 절
+  order by 절
+
+
+ * 그룹함수시 사용되는 문법
+1. select절 : 검색하고자 하는 속성
+2. from절	: 검색 table
+3. group by 절 : 특정 조건별 그룹화하고자 하는 속성
+4. having 절 : 그룹함수 사용시 조건절
+5. order by절 : 검색된 데이터를 정렬
+
+* 실행 순서 :  2 - 3 - 4 - 1 - 5
+*/
+
+--1. count() : 개수 확인 함수
+-- emp table의 직원이 몇명?
+select count(*) from emp;
+
+--? comm 받는 직원 수만 검색
+select count(comm) from emp;
+
+
+
+
+--2. sum() : 합계 함수
+-- ? 모든 사원의 연봉(sal)의 합
+select sum(sal*12) from emp;
+
+
+
+--? 모든 직원이 받는 comm 합
+select sum(comm) from emp;
+
+
+
+--?  MANAGER인 직원들의  월급여의 합
+select sum(sal)
+from emp
+where job='MANAGER';
+
+
+--? job 종류 counting[절대 중복 불가 = distinct]
+-- select count(job) from emp;
+select count(distinct job)
+from emp;
+
+
+
+--3. avg() : 평균
+--? emp table의 모든 직원들의 급여 평균 검색
+select avg(sal)
+from emp;
+
+
+--? 커미션 받는 사원수, 총 커미션 합, 평균 구하기
+select count(comm), sum(comm), avg(comm)
+from emp;
+
+
+
+--4. max(), min() : 최대값, 최소값
+-- 숫자, date 타입에 사용 가능
+
+--최대 급여, 최소 급여 검색
+select max(sal) , min(sal)
+from emp;
+
+--?최근 입사한 사원의 입사일과, 가장 오래된 사원의 입사일 검색
+-- max(), min() 함수 사용해 보기
+select max(hiredate) 신입, min(hiredate) 경력
+from emp;
+
+-- 부서별 커미션 받는 사원수
+--부서정보와 커미션 받는 사원수
+
+
+
+
+
+--? deptno 오름차순으로 검색
+
+select deptno,count(comm)
+from emp
+order by deptno asc
+group by deptno;
+
+select deptno,count(comm) --3번
+from emp                  --1번
+group by deptno           --2번
+order by deptno asc;      --4번
+
+
+--? 부서별 월 급여평균 구함(그룹함수 사용시 부서번호별로 그룹화 작업후 평균 연산)
+select deptno,avg(sal)
+from emp
+group by deptno;
+
+
+--? 소속 부서별 월 급여 총액과 평균 급여 검색[deptno 오름차순 정렬]
+select deptno,sum(sal),avg(sal)
+from emp
+group by deptno
+order by deptno asc;
+
+
+
+--? 소속 부서별 최대 급여와 최소 급여 검색[deptno 오름차순 정렬]
+select deptno,max(sal) ,min(sal)
+from emp
+group by deptno
+order by deptno asc;
+
+/*
+select ename,deptno,max(sal) ,min(sal)
+from emp
+group by deptno
+order by deptno asc;
+*/
+
+
+-- *** having절 *** [ 조건을 주고 검색하기 ]
+-- 그룹함수 사용시 조건문
+
+--1. ? 부서별(group by) 사원의 수(count(*))와 커미션(count(comm)) 받는 사원의 수
+select deptno,(count(*)),count(comm)
+from emp
+group by deptno;
+
+
+--2. ? 부서별 그룹을 지은후(group by deptno),
+-- 부서별(group by) 평균 급여(avg())가 2000 이상인 부서의 번호와 평균 급여 검색
+select deptno, avg(sal)
+from emp
+group by deptno
+having avg(sal)>= 2000;
+
+--
+select deptno, avg(sal) --4번
+from emp             --1번
+group by deptno       --2번
+having avg(sal)>= 2000  --3번
+order by deptno; --5번
+
+--3. 부서의 급여중 최대값(max)과 최소값(min)을 구하되 최대 급여가 2900이상(having)인 부서만 출력
+--부서(deptno)의 급여(sal)중 최대값(max)과 최소값(min)을 구하되 최대 급여가(max) 2900이상(having)인 부서(deptno)만 출력
+
+select deptno,max(sal),min(sal)
+from emp
+group by deptno
+having max(sal)>=2900;
+
+
+--? 문제 2문제를 직접 제시하기
+
+부서에서  월 평균 sal 값이 1000이 넘이넘는 부서의 급여의 최대 최소 평균 값을 구하여라
+select deptno , max(sal) , min(sal)
+from emp
+group by deptno
+having avg(sal)>= 1000;
+
+부서 월 평균 급여가 2000이 넘는 사람을 세고 부서 평균  sal값을 구하시오
+select deptno ,count(*),avg(sal)
+from emp
+group by deptno
+having avg(sal)>2000;

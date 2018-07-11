@@ -1,0 +1,58 @@
+--12.sequence.sql
+/*
+1. 시퀀스 : 고유한 숫자값을 index화 해서 자동으로 반영할수 있는 유용한 기술 
+2. 대표적인 활용 영역
+	- 게시물 글번호에 주로 사용
+3. 특징
+	- 절대 중복 불가 
+*/	
+
+--1. sequence 생성 명령어
+drop table seq_test;
+
+
+
+create sequence seq_test_seq;
+
+
+
+--2. seq~를 활용한 insert
+	-- 기본적으로 생성한 경우 1씩 자동 증가
+insert into seq_test values(seq_test_seq.nextval, 1);
+insert into seq_test values(seq_test_seq.nextval, 2);
+insert into seq_test values(seq_test_seq.nextval, 3);
+select * from seq_test;
+
+
+--3. 다수의 table에서 하나의 seq를 공동 사용시?
+create table seq_test2(
+	no1 number(2),
+	no2 number(2)
+);
+insert into seq_test2 values(seq_test_seq.nextval, 1);
+insert into seq_test2 values(seq_test_seq.nextval, 2);
+
+insert into seq_test values(seq_test_seq.nextval, 1);
+
+select * from seq_test;
+select * from seq_test2;
+
+--4. 시작index 지정 및 증가치도 지정하는 seq 생성 명령어
+
+
+
+delete from seq_test;
+delete from seq_test2;
+commit;
+insert into seq_test values(seq2_test.nextval, 1);
+insert into seq_test values(seq2_test.nextval, 2);
+insert into seq_test values(seq2_test.nextval, 2);
+select * from seq_test;
+
+--5. seq 삭제 명령어
+
+
+--6. 현 sequence의 데이터값 검색하기
+create sequence seq2_test start with 1 increment by 2 maxvalue 10;
+
+

@@ -1,0 +1,110 @@
+-- 7.DDL.sql
+-- table 생성(create)과 삭제(drop), 수정(alter)
+-- DDL(Data Definition Language)
+
+drop table test;
+create table test(
+	name varchar(10)
+);
+drop table test;
+
+--1. table삭제 
+drop table test;
+
+
+--2. table 생성  
+-- name(varchar2), age(number3) 칼럼 보유한 people table 생성
+
+
+
+-- 3. 서브 쿼리 활용해서 emp01 table 생성(이미 존재하는 table기반으로 생성)
+-- emp table의 모든 데이터로 emp01 생성
+
+
+
+-- 4. 서브쿼리 활용해서 특정 칼럼(empno)만으로 emp02 table 생성
+
+
+desc emp02;
+select * from emp02;
+
+
+--5. deptno=10 조건문 반영해서 emp03 table 생성
+
+
+select * from emp03;
+
+
+-- 6. 데이터 insert없이 table 구조로만 새로운 emp04 table생성시 
+-- 사용되는 조건식 : where=거짓
+
+
+
+select * from emp04;
+
+
+
+-- *** table 수정 : alter ***
+-- emp01 table로 실습해 보기
+
+--7. emp01 table에 job이라는 특정 칼럼 추가(job varchar2(10))
+-- 이미 데이터를 보유한 table에 새로운 job칼럼 추가 가능 
+desc emp01;
+drop table emp01;
+create table emp01 as select empno, ename from emp;
+desc emp01;
+
+
+
+
+desc emp01;
+
+
+
+--8. 이미 존재하는 칼럼 사이즈 변경 시도해 보기
+-- 데이터 미 존재 칼럼의 사이즈 수정
+
+
+desc emp01;
+
+
+--9. 이미 데이터가 존재할 경우 칼럼 사이즈가 큰 사이즈의 컬럼으로 변경 가능 
+-- 혹 사이즈 감소시 주의사항 : 이미 존재하는 데이터보다 적은 사이즈로 변경 절대 불가 
+drop table emp01;
+create table emp01 as select empno, ename, job from emp;
+select * from emp01;
+desc emp01;
+
+alter table emp01 modify(job varchar(30));
+desc emp01;
+select * from emp01;
+alter table emp01 modify(job varchar(10));
+alter table emp01 modify(job varchar(5));
+
+
+--10. job 칼럼 삭제 
+-- 데이터 존재시에도 자동 삭제 
+
+
+desc emp01;
+select * from emp01;
+
+
+--11. emp01을 test01로 table 이름 변경
+
+
+select * from test01;
+
+
+--12. table의 순수 데이터만 완벽하게 삭제하는 명령어 
+--commit 불필요
+truncate table emp01;
+
+
+
+
+
+
+
+
+

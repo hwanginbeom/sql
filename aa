@@ -1,0 +1,91 @@
+sql 주관식 5-6문제
+키워드
+15문제 객관식
+자바의 키워드 알아야 된다
+ 키워드 아닌 것을 찾는것은
+ 대문자가 하나도 없다 !!!!!!!!!!!!!!
+접근제어자
+클래스 선언구에 올수 있는거  4가지 중에 2가지밖에없다
+상속
+클래스에 상속 불가능하게 하려면 파이널쓰면
+파이널 / 디폴트 / public
+ .java 의 모든 구성요소
+
+ .java에 클래스 여러개 올떄 메인메소드에 있는 저장하는 명이 왜그러는지
+ 메인메소드가 있는 파일 명이 자바 어쩌고 된다
+
+ 메소드 기본 문법
+
+인터페이스는 jdbc 내일 한다.
+
+다중 정의 재정의 기본 문법
+재정의 할 때 반드시 일치 시켜야 되는것
+기본 타입 참조 타입 디폴트 타입
+코드 소량나온다. 아주쉽쉽
+api관점에서 가장 최상위 루트 클래스 Object
+
+
+ 패키지 임폴트 중간 매개변수
+ 기본 타입
+ 배열공부 2차원 없고 1차원
+ arraylist랑 자바 배열다름 !
+ 배열 생성하는
+
+ null값 체크하는 sql 문장 !!!!!!!!!!!!!!! nvl
+ 테이블명 컬럼명 한글로제시 한글로 sql 문장 만들면 된다.
+ 두문제 정도 나옴
+ 한글 테이블에서 자음 컬럼이 있다! 내림차순으로 정리해라
+ order by asc / desc 요런식
+
+ select 자음
+ from 한글
+ where ???
+ 예압 ! 췌압 !
+
+ not null
+ is null
+
+ <>= 삑
+ename, (sal*12+nvl(comm,0)
+ 널값 여부에 대한 sql 문장
+
+ 완벽한 클래스
+
+class Test{
+  void getName(){};
+}
+public class child extends Test{} //하거나 말거나 가능
+
+abstract class Test{   // 미완성은 abstract 를 넣어서 클래스 부분과 메소드 부분에 넣어준다.
+  //너의 이름을 반드시 반환하게 개발해야함 - rule
+  abstract void getName();
+  //완벽한 메소드들 구성
+}
+
+public class Child extends Test{
+  void getName(){
+    return "내 이름";
+  }
+}
+미완성 간에 상속은 반드시 재정의 해야된다. 100프로 똑같아야 한다.
+
+
+interface Test{
+  final String COMMPANY_NAME = "멀캠"
+  //너의 이름을 반드시 반환하게 개발해야함 - rule
+  abstract String getName();
+  //너의 나이을 반드시 반환하게 개발해야함 - rule
+  abstract int getAge();
+
+}
+
+class Child implemints Test{
+  abstract String getName(){
+    return "이름";
+  };
+  abstract int getAge(){
+    return 10;
+  };
+
+
+}
