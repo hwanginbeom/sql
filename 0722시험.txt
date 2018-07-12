@@ -1,0 +1,210 @@
+sql 주관식 5-6문제
+키워드
+
+낄
+15문제 객관식
+자바의 키워드 알아야 된다
+키워드란 - int / short / super /true 등등 이런것들을 키워드라 한다.
+대문자가 나오면 체크하면 된다.
+
+ 키워드 아닌 것을 찾는것은
+ 대문자가 하나도 없다 !!!!!!!!!!!!!!
+
+
+접근제어자
+public/ 모든 클래스 모든 패키지
+defeault /  동일클래스 동일 패키지 다른 패키지의 하위 클래스
+protected /  동일 클래스 동일패키지
+private / 클래스 내에서만
+
+
+ 이런게 클래스 선언구 부분에 오는 접근제어자
+public class NoteBook extends Electronics{
+(default) class NoteBook extends Electronics{}
+
+클래스 선언구에 올수 있는거  4가지 중에 2가지밖에없다
+
+finally class NoteBook
+
+상속
+클래스에 상속 불가능하게 하려면 파이널쓰면
+파이널 / default / public
+
+ .java 의 모든 구성요소
+ package / import / class / method / 변수 /생성자 /static{}
+
+확장자로 모오는지 ? 말하는 거 같습니다.
+NoteBook.java
+
+ .java에 클래스 여러개 올 때 메인메소드에 있는 저장하는 명이 왜그러는지
+ 메인메소드가 있는 파일 명이 자바 어쩌고 된다
+
+
+ 메소드 기본 문법
+public stainc int sum(int a , int b  이 부분은 매개변수 받는 부분입니다.){
+return 5+3;
+}
+
+sum();
+
+public int sum(){};
+
+가능
+
+
+인터페이스는 jdbc 내일 한다.
+
+다중 정의 / 재정의 기본 문법
+다중 정의 :메소드명은 같지만 받는 매개변수에 따라 다른 작용을 합니다.
+int sum(){
+return 5+3;
+}
+
+int sum(int a , int b){
+return a+b;
+}
+
+
+재정의 : 형태는 똑같지만 안에 있는게 다릅니다 !
+매개변수와 갯수 메소드명이 같아야 합니다. 아예 똑같이 생겨야 됩니다.
+@Override
+public String toString() {
+  return "peopleDTO [name=" + name + ", age=" + age + "]";
+}
+
+
+
+기본 타입 / 디폴트 타입
+
+기본[primitive] 타입
+
+1. 원시값을 나타내는 자료형
+2. 원자성을 나타내는 단일값으로 이루어짐
+3. 할당되는 메모리 공간에 값을 직접 저장하는 타입
+4. built-in 타입(내장타입)
+
+
+
+참조 타입 (앞에 대문자면 클래스타입/ 참조타입)
+Reference[객체, class] 타입
+
+참조값을 나타내는 자료형
+생성된 객체를 가리키는 참조값을 나타냄
+class 및 interface를 기반으로 한 타입
+사용자 정의 타입
+참조타입의 default값 : null
+
+
+
+
+여기서 O 대문자입니다.
+api관점에서 가장 최상위 루트 클래스 Object
+java.lang.Object
+
+
+
+
+ 배열공부 2차원 없고 1차원
+
+ arraylist랑 자바 배열다름 !
+
+
+ ArrayList <String> abc = ArrayList();
+
+
+ 배열 생성하는
+ int [] a = {1,2,3,4,};
+ String []b ={"ddf","dfds","sdfd"};
+ char [] c = {'a','b','c'};
+
+ null값 체크하는 sql 문장 !!!!!!!!!!!!!!! nvl
+select nvl(comm,0)  //comm 이 널이면 0으로 대체
+from emp;
+
+
+select *
+from emp
+where comm is null // 결측(null)이 있는걸 찾는거다
+where comm is not null // 결측(null)이 없는걸 찾는것
+
+
+ 테이블명 컬럼명 한글로제시 한글로 sql 문장 만들면 된다.
+ 두문제 정도 나옴
+ 한글 테이블에서 자음 컬럼이 있다! 내림차순으로 정리해라
+
+ select *
+ from emp
+ order by asc (오름차순)/
+ order by desc (내림차순) 요런식
+
+
+ select 자음
+ from 한글
+ where ???
+ 예압 ! 췌압 !
+
+
+ <>= 삑
+select ename, (sal*12+nvl(comm,0)
+from emp
+where comm is null // 결측(null)이 있는걸 찾는거다
+where comm is not null // 결측(null)이 없는걸 찾는것
+
+
+
+ 완벽한 클래스
+
+class Test{
+  void getName(){};
+}
+안에 메소드에 () {} 다 들어간다.
+
+public class child extends Test{} //하거나 말거나 가능
+상속 받아도 되고 안 받아도 클래스 자체는 무결하다.
+
+
+
+추상 클래스 !
+abstract class Test{   // 미완성은 abstract 를 넣어서 클래스 부분과 메소드 부분에 넣어준다.
+  //너의 이름을 반드시 반환하게 개발해야함 - rule
+  abstract void getName();       //여기서 메소드에 {} 이부분이 구성이 안되
+  //완벽한 메소드를 구성해야되서
+}
+
+public class Child extends Test{
+  void getName(){
+    return "내 이름";
+  }
+}
+
+
+{
+  return "내 이름";
+}
+
+이 로직부분을 재정의 해야한다.
+미완성 간에 상속은 반드시 재정의 해야된다. 상속 받고 100프로 똑같아야 한다.
+
+
+
+
+인터페이스 ! (클래스라고도 안쓴다.)
+interface Test{
+  final String COMMPANY_NAME = "멀캠"
+  //너의 이름을 반드시 반환하게 개발해야함 - rule
+  abstract String getName();
+  //너의 나이을 반드시 반환하게 개발해야함 - rule
+  abstract int getAge();
+
+}
+
+class Child implements Test{
+  abstract String getName(){
+    return "이름";
+  };
+  abstract int getAge(){
+    return 10;
+  };
+}
+
+이 해당하는 부분에서 implemints 이걸로 작성하고 재정의한다
