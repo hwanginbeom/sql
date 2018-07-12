@@ -307,5 +307,13 @@ when not matched then
 --? produce02 table과 produce_total table 병합
 select * from produce_total;
 
+merge into produce_total t
+using produce02 p2
+on (t.판매번호 = p2.판매번호)
+when matched then
+	update set t.수량 =t.수량 + p2.수량
+when not matched then
+	insert values(p2.판매번호, p2.제품번호 , p2.수량 , p2.금액);
+
 
 select * from produce_total;
