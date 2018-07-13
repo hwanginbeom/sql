@@ -1,108 +1,108 @@
 --9.integrity.sql
-/* ÇĞ½À³»¿ë
-*** ÇÏ³ªÀÇ db ½Ã½ºÅÛ¿¡¼­ ¸ğµç Á¦¾àÁ¶°ÇÀº °ü¸®ÀÚµéÀÌ ½±°Ô È®ÀÎ °¡´ÉÇÏ°Ô ¼³°è
-		- Á¦¾àÁ¶°ÇÀº »ç¿ëÀÚ Á¤ÀÇ¸íÀ¸·Î ÁöÁ¤ÇÏ´Â°Ô ´õ È¿°úÀû
+/* í•™ìŠµë‚´ìš©
+*** í•˜ë‚˜ì˜ db ì‹œìŠ¤í…œì—ì„œ ëª¨ë“  ì œì•½ì¡°ê±´ì€ ê´€ë¦¬ìë“¤ì´ ì‰½ê²Œ í™•ì¸ ê°€ëŠ¥í•˜ê²Œ ì„¤ê³„
+		- ì œì•½ì¡°ê±´ì€ ì‚¬ìš©ì ì •ì˜ëª…ìœ¼ë¡œ ì§€ì •í•˜ëŠ”ê²Œ ë” íš¨ê³¼ì 
 		-
-1. table »ı¼º½Ã Á¦¾àÁ¶°ÇÀ» ¼³Á¤ÇÏ´Â ±â¹ı 
+1. table ìƒì„±ì‹œ ì œì•½ì¡°ê±´ì„ ì„¤ì •í•˜ëŠ” ê¸°ë²•
 
-2. Á¦¾à Á¶°Ç Á¾·ù
-	2-1. PK[primary key] 
-		- ±âº»Å°, 
-		-Áßº¹ºÒ°¡, 
-		-nullºÒ°¡, 
-		-µ¥ÀÌÅÍµé ±¸ºĞÀ» À§ÇÑ ÇÙ½É µ¥ÀÌÅÍ
+2. ì œì•½ ì¡°ê±´ ì¢…ë¥˜
+	2-1. PK[primary key]
+		- ê¸°ë³¸í‚¤,
+		-ì¤‘ë³µë¶ˆê°€,
+		-nullë¶ˆê°€,
+		-ë°ì´í„°ë“¤ êµ¬ë¶„ì„ ìœ„í•œ í•µì‹¬ ë°ì´í„°
 			: not null + unique
-			
-	2-2. not null - ¹İµå½Ã µ¥ÀÌÅÍ Á¸Àç ,Áßº¹ Çã¿ë
-	
-	2-3. unique - Áßº¹ ºÒ°¡, nullÀº Çã¿ë
-	
-	2-4. check - table »ı¼º½Ã ±ÔÁ¤ÇÑ ¹üÀ§ÀÇ µ¥ÀÌÅÍ¸¸ ÀúÀå °¡´É 
-	
-	2-5. default - insert½Ã¿¡ Æ¯º°ÇÑ µ¥ÀÌÅÍ ¹ÌÀúÀå½Ã¿¡µµ ÀÚµ¿ ÀúÀåµÇ´Â ±âº» °ª
-					- ÀÚ¹Ù °üÁ¡¿¡´Â ¸â¹ö º¯¼ö ¼±¾ğ ÈÄ °´Ã¼ »ı¼º Á÷ÈÄ ¸â¹ö º¯¼ö ±âº»°ªÀ¸·Î ÃÊ±âÈ­
-					
-	2-6. FK[foreign key] 
-		- ¿Ü·¡Å°[ÂüÁ¶Å°], ´Ù¸¥ tableÀÇ pk¸¦ ÂüÁ¶ÇÏ´Â µ¥ÀÌÅÍ 
-		- table°£ÀÇ ÁÖÁ¾ °ü°è°¡ Çü¼º
-		- pk º¸À¯ tableÀÌ ºÎ¸ğ, ÂüÁ¶ÇÏ´Â tableÀÌ ÀÚ½Ä
-		- ºÎ¸ğÀÇ ¹Ì Á¸ÀçÇÏ´Â µ¥ÀÌÅÍ¸¦ ÀÚ½Ä¿¡¼­ »õ·Î »ı¼º°¡´É? ºÒ°¡ 
-		- ÀÚ½Ä tableµéÀÌ Á¸ÀçÇÒ °æ¿ì ºÎ¸ğtable¸¸ »èÁ¦ °¡´É? ºÒ°¡
-			- ÇØ°áÃ¥ : °ü°è¸¦ ÇØÁ¦µµ °¡´ÉÇÏ³ª °¡±ŞÀû ºĞ¼®¼³°è½Ã ¿Ïº®ÇÏ¸®¸¸Å­ °í¹ÎÈÄ ¼³°è
-	
 
-3. Á¦¾à Á¶°Ç¸í ¸í½ÃÇÏ´Â ¹æ¹ı
-	3-1. oracle engineÀÌ ±âº»ÀûÀ¸·Î ¼³Á¤
+	2-2. not null - ë°˜ë“œì‹œ ë°ì´í„° ì¡´ì¬ ,ì¤‘ë³µ í—ˆìš©
+
+	2-3. unique - ì¤‘ë³µ ë¶ˆê°€, nullì€ í—ˆìš©
+
+	2-4. check - table ìƒì„±ì‹œ ê·œì •í•œ ë²”ìœ„ì˜ ë°ì´í„°ë§Œ ì €ì¥ ê°€ëŠ¥
+
+	2-5. default - insertì‹œì— íŠ¹ë³„í•œ ë°ì´í„° ë¯¸ì €ì¥ì‹œì—ë„ ìë™ ì €ì¥ë˜ëŠ” ê¸°ë³¸ ê°’
+					- ìë°” ê´€ì ì—ëŠ” ë©¤ë²„ ë³€ìˆ˜ ì„ ì–¸ í›„ ê°ì²´ ìƒì„± ì§í›„ ë©¤ë²„ ë³€ìˆ˜ ê¸°ë³¸ê°’ìœ¼ë¡œ ì´ˆê¸°í™”
+
+	2-6. FK[foreign key]
+		- ì™¸ë˜í‚¤[ì°¸ì¡°í‚¤], ë‹¤ë¥¸ tableì˜ pkë¥¼ ì°¸ì¡°í•˜ëŠ” ë°ì´í„°
+		- tableê°„ì˜ ì£¼ì¢… ê´€ê³„ê°€ í˜•ì„±
+		- pk ë³´ìœ  tableì´ ë¶€ëª¨, ì°¸ì¡°í•˜ëŠ” tableì´ ìì‹
+		- ë¶€ëª¨ì˜ ë¯¸ ì¡´ì¬í•˜ëŠ” ë°ì´í„°ë¥¼ ìì‹ì—ì„œ ìƒˆë¡œ ìƒì„±ê°€ëŠ¥? ë¶ˆê°€
+		- ìì‹ tableë“¤ì´ ì¡´ì¬í•  ê²½ìš° ë¶€ëª¨tableë§Œ ì‚­ì œ ê°€ëŠ¥? ë¶ˆê°€
+			- í•´ê²°ì±… : ê´€ê³„ë¥¼ í•´ì œë„ ê°€ëŠ¥í•˜ë‚˜ ê°€ê¸‰ì  ë¶„ì„ì„¤ê³„ì‹œ ì™„ë²½í•˜ë¦¬ë§Œí¼ ê³ ë¯¼í›„ ì„¤ê³„
+
+
+3. ì œì•½ ì¡°ê±´ëª… ëª…ì‹œí•˜ëŠ” ë°©ë²•
+	3-1. oracle engineì´ ê¸°ë³¸ì ìœ¼ë¡œ ì„¤ì •
 		- SYS_Xxxx
-	3-2. sql°³¹ßÀÚ°¡ Á÷Á¢ ¼³Á¤
-		- table¸í_ÄÃ·³¸í_Á¦¾àÁ¶°Ç¸íµî ±â¼ú..´Ü ¼ø¼­´Â ÀÓÀÇ º¯°æ °¡´É
-		- ¾à¾î »ç¿ëµµ °¡´É[ºĞ¼®, ¼³°è½Ã ¿ë¾î»çÀü Á¦½ÃÈÄ ÀÛ¼º ±ÇÀå]
-	
-4. Á¦¾à Á¶°Ç ¼±¾ğ À§Ä¡
-	4-1. ÄÃ·³ ·¹º§ ´ÜÀ§
-		- ÄÃ·³¼±¾ğ ¶óÀÎ¿¡ Á¦¾àÁ¶°Ç ¼³Á¤ 
-		
-	4-2. Å×ÀÌºí ·¹º§ ´ÜÀ§ 
-		- ¸ğµç ÄÃ·³ ¼±¾ğ Á÷ÈÄ º°µµ·Î Á¦¾àÁ¶°Ç ¼³Á¤ 
-	
-	
-5. ¿À¶óÅ¬ ÀÚÃ¼ Æ¯º°ÇÑ table
+	3-2. sqlê°œë°œìê°€ ì§ì ‘ ì„¤ì •
+		- tableëª…_ì»¬ëŸ¼ëª…_ì œì•½ì¡°ê±´ëª…ë“± ê¸°ìˆ ..ë‹¨ ìˆœì„œëŠ” ì„ì˜ ë³€ê²½ ê°€ëŠ¥
+		- ì•½ì–´ ì‚¬ìš©ë„ ê°€ëŠ¥[ë¶„ì„, ì„¤ê³„ì‹œ ìš©ì–´ì‚¬ì „ ì œì‹œí›„ ì‘ì„± ê¶Œì¥]
+
+4. ì œì•½ ì¡°ê±´ ì„ ì–¸ ìœ„ì¹˜
+	4-1. ì»¬ëŸ¼ ë ˆë²¨ ë‹¨ìœ„
+		- ì»¬ëŸ¼ì„ ì–¸ ë¼ì¸ì— ì œì•½ì¡°ê±´ ì„¤ì •
+
+	4-2. í…Œì´ë¸” ë ˆë²¨ ë‹¨ìœ„
+		- ëª¨ë“  ì»¬ëŸ¼ ì„ ì–¸ ì§í›„ ë³„ë„ë¡œ ì œì•½ì¡°ê±´ ì„¤ì •
+
+
+5. ì˜¤ë¼í´ ìì²´ íŠ¹ë³„í•œ table
 	5-1. user_constraints
-		- Á¦¾àÁ¶°Ç Á¤º¸ º¸À¯ table
-		- °³¹ßÀÚ°¡ tableÀÇ µ¥ÀÌÅÍ°ª Á÷Á¢ ¼öÁ¤ ºÒ°¡
-		- select constraint_name, constraint_type, table_name 
+		- ì œì•½ì¡°ê±´ ì •ë³´ ë³´ìœ  table
+		- ê°œë°œìê°€ tableì˜ ë°ì´í„°ê°’ ì§ì ‘ ìˆ˜ì • ë¶ˆê°€
+		- select constraint_name, constraint_type, table_name
 			from user_constraints;
-µñ¼Å³Ê¸® °ü·Ã Å×ÀÌºí / user_constraints / primary  / reference 
-			
-			
-6. ÀÌ¹Ì Á¸ÀçÇÏ´Â tableÀÇ Á¦¾àÁ¶°Ç ¼öÁ¤(Ãß°¡, »èÁ¦)¸í·É¾î
-	6-1. Á¦¾àÁ¶°Ç Ãß°¡
-		alter table Å×ÀÌºí¸í add constraint Á¦¾àÁ¶°Ç¸í Á¦¾àÁ¶°Ç(ÄÃ·³¸í);
+ë”•ì…”ë„ˆë¦¬ ê´€ë ¨ í…Œì´ë¸” / user_constraints / primary  / reference
+
+
+6. ì´ë¯¸ ì¡´ì¬í•˜ëŠ” tableì˜ ì œì•½ì¡°ê±´ ìˆ˜ì •(ì¶”ê°€, ì‚­ì œ)ëª…ë ¹ì–´
+	6-1. ì œì•½ì¡°ê±´ ì¶”ê°€
+		alter table í…Œì´ë¸”ëª… add constraint ì œì•½ì¡°ê±´ëª… ì œì•½ì¡°ê±´(ì»¬ëŸ¼ëª…);
 		alter table dept01 add constraint dept01_deptno_pk primary key(deptno);
-		
-	6-2. Á¦¾àÁ¶°Ç »èÁ¦(drop)
-		- table»èÁ¦ 
-		alter table Å×ÀÌºí¸í cascade constraint;
-		
-		alter table Å×ÀÌºí¸í drop Á¦¾àÁ¶°Ç¸í;
+
+	6-2. ì œì•½ì¡°ê±´ ì‚­ì œ(drop)
+		- tableì‚­ì œ
+		alter table í…Œì´ë¸”ëª… cascade constraint;
+
+		alter table í…Œì´ë¸”ëª… drop ì œì•½ì¡°ê±´ëª…;
 		alter table dept01 drop primary key;
 */
 /*
-7. »ç¿ëÀÚ Á¤ÀÇÁ¦¾à Á¶°Ç ºÎ¿©ÇÏ´Â	
-	1. not null¿¡ ÀÌ¸§Àº Àß ºÎ¿©ÇÏÁö ¾ÊÀ½
-		-db°¡ not nullÀÇ Á¦¾à Á¶°Ç ÀÌ¸§Àº Àß »ç¿ëÇÏÁö ¾ÊÀ½
-	2. not nullÀÌ ¾Æ´Ñ ÀÌ¸§µéÀº ¿À·ù ¹ß»ı½Ã È®ÀÎ°¡´É 
-		-°ü¸® Ãø¸é¿¡¼­µµ ÀÌ¸§ ºÎ¿© ±ÇÀå
-		-¿¹½Ã> table¸í_Á¦¾àÁ¶°Ç¸í_ÄÃ·³¸í
+7. ì‚¬ìš©ì ì •ì˜ì œì•½ ì¡°ê±´ ë¶€ì—¬í•˜ëŠ”
+	1. not nullì— ì´ë¦„ì€ ì˜ ë¶€ì—¬í•˜ì§€ ì•ŠìŒ
+		-dbê°€ not nullì˜ ì œì•½ ì¡°ê±´ ì´ë¦„ì€ ì˜ ì‚¬ìš©í•˜ì§€ ì•ŠìŒ
+	2. not nullì´ ì•„ë‹Œ ì´ë¦„ë“¤ì€ ì˜¤ë¥˜ ë°œìƒì‹œ í™•ì¸ê°€ëŠ¥
+		-ê´€ë¦¬ ì¸¡ë©´ì—ì„œë„ ì´ë¦„ ë¶€ì—¬ ê¶Œì¥
+		-ì˜ˆì‹œ> tableëª…_ì œì•½ì¡°ê±´ëª…_ì»¬ëŸ¼ëª…
 */
 
---1. ¿À¶óÅ¬ db¿¡ ¼³Á¤ÇÑ tableÀÇ Á¦¾àÁ¶°Ç Á¤º¸¸¦ º¸À¯ÇÏ°í ÀÖ´Â table °Ë»öÇÏ±â
--- µñ¼Å³Ê¸® table ÀÌ¶ó°í ÄªÇÔ
--- ¿À¶óÅ¬ ÀÚÃ¼ table °Ë»öÇÏ±â :  user_constraints
--- ÀÌ table¿¡´Â Á¦¾à Á¶°ÇÀÌ ÀÖ´Â table¸íÀÌ ´ë¹®ÀÚ¸íÀ¸·Î º¯È¯ÇØ¼­ ÀúÀå
+--1. ì˜¤ë¼í´ dbì— ì„¤ì •í•œ tableì˜ ì œì•½ì¡°ê±´ ì •ë³´ë¥¼ ë³´ìœ í•˜ê³  ìˆëŠ” table ê²€ìƒ‰í•˜ê¸°
+-- ë”•ì…”ë„ˆë¦¬ table ì´ë¼ê³  ì¹­í•¨
+-- ì˜¤ë¼í´ ìì²´ table ê²€ìƒ‰í•˜ê¸° :  user_constraints
+-- ì´ tableì—ëŠ” ì œì•½ ì¡°ê±´ì´ ìˆëŠ” tableëª…ì´ ëŒ€ë¬¸ìëª…ìœ¼ë¡œ ë³€í™˜í•´ì„œ ì €ì¥
 select * from user_constraints;
 desc user_constraints;
 select  CONSTRAINT_TYPE, table_name from user_constraints;
 
 
-select constraint_name, constraint_type, table_name 
+select constraint_name, constraint_type, table_name
 from user_constraints where table_name = 'EMP';
 
---EMP´Â À¯È¿ÇÑ µ¥ÀÌÅÍ , emp ¹«È¿ÇÑ µ¥ÀÌÅÍ
-select constraint_name, constraint_type, table_name 
+--EMPëŠ” ìœ íš¨í•œ ë°ì´í„° , emp ë¬´íš¨í•œ ë°ì´í„°
+select constraint_name, constraint_type, table_name
 from user_constraints where table_name = 'emp';
 
 
---2. »ç¿ëÀÚ Á¤ÀÇ Á¦¾àÁ¶°Ç¸í ¸í½ÃÇÏ±â
+--2. ì‚¬ìš©ì ì •ì˜ ì œì•½ì¡°ê±´ëª… ëª…ì‹œí•˜ê¸°
 drop table emp02;
 
--- Á¦¾àÁ¶°ÇÀº º¹Á¦µÇÁö ¾ÊÀ½
+-- ì œì•½ì¡°ê±´ì€ ë³µì œë˜ì§€ ì•ŠìŒ
 create table emp02 as select * from emp;
 
 select constraint_name, constraint_type, table_name
 from user_constraints where table_name='EMP02';
 
--- table »ı¼ºÇÏ´Â ÀÚ°¡ Á¦¾àÁ¶°Ç ¸í½Ã + Á¦¾à Á¶°Ç¿¡ ÀÌ¸§À» ºÎ¿©ÇÏ´Â ÀÛ¾÷
+-- table ìƒì„±í•˜ëŠ” ìê°€ ì œì•½ì¡°ê±´ ëª…ì‹œ + ì œì•½ ì¡°ê±´ì— ì´ë¦„ì„ ë¶€ì—¬í•˜ëŠ” ì‘ì—…
 drop table emp02;
 create table emp02(
 	empno number(4) constraint emp02_nn_empno not null,
@@ -111,24 +111,24 @@ create table emp02(
 select constraint_name, constraint_type, table_name
 from user_constraints where table_name='EMP02';
 
---Á¤»ó ½ÇÇà
+--ì •ìƒ ì‹¤í–‰
 insert into emp02 values(1, 'tester');
---Á¦¾à Á¶°Ç¿¡ À§¹è µû¶ó¼­ ½ÇÇà ¿À·ù , ¿Ö? empno´Â not null ÀÎµ¥ 
---empno¿¡ null ¹İ¿µ ½Ãµµ ÇÏ´Â ¹®Àå
+--ì œì•½ ì¡°ê±´ì— ìœ„ë°° ë”°ë¼ì„œ ì‹¤í–‰ ì˜¤ë¥˜ , ì™œ? empnoëŠ” not null ì¸ë°
+--empnoì— null ë°˜ì˜ ì‹œë„ í•˜ëŠ” ë¬¸ì¥
 insert into emp02 (ename) values('master');
 
 
-//2¹ø¿¡´Â not null ÀÌ¶ó ºó °ªÀÌ µé¾î°¡¸é ¾ÈµÈ´Ù.
+//2ë²ˆì—ëŠ” not null ì´ë¼ ë¹ˆ ê°’ì´ ë“¤ì–´ê°€ë©´ ì•ˆëœë‹¤.
 --cannot insert NULL into ("SCOTT"."EMP02"."EMPNO")
 
 
 
---3. »ç¿ëÀÚ Á¤ÀÇ Á¦¾àÁ¶°Ç¸í ¼³Á¤ ÈÄ À§¹è½Ã Ãâ·ÂµÇ´Â ¸Ş¼¼Áö¿¡ »ç¿ëÀÚÁ¤ÀÇ Á¦¾àÁ¶°Ç¸í
-	-- È®ÀÎ °¡´É 
-	-- pk =primary key / nn Àº not null
+--3. ì‚¬ìš©ì ì •ì˜ ì œì•½ì¡°ê±´ëª… ì„¤ì • í›„ ìœ„ë°°ì‹œ ì¶œë ¥ë˜ëŠ” ë©”ì„¸ì§€ì— ì‚¬ìš©ìì •ì˜ ì œì•½ì¡°ê±´ëª…
+	-- í™•ì¸ ê°€ëŠ¥
+	-- pk =primary key / nn ì€ not null
 drop table emp02;
 
-create table emp02(                
+create table emp02(
 	empno number(4) constraint emp02_pk_empno primary key,
 	ename varchar2(10)
 );
@@ -140,19 +140,19 @@ from user_constraints where table_name='EMP02';
 insert into emp02 values(1, 'tester');
 insert into emp02 values(1, 'master');
 
-//3¹øÀº pk¶ó À¯ÀÏÇÑ °ªÀ» °¡Á®¾ß ÇÑ´Ù.
+//3ë²ˆì€ pkë¼ ìœ ì¼í•œ ê°’ì„ ê°€ì ¸ì•¼ í•œë‹¤.
 unique constraint (SCOTT.EMP02_PK_EMPNO) violated
 
 
---4. Á¦¾àÁ¶°Ç¸íÀ» ¿À¶óÅ¬ ¿£ÁøÀÌ ÀÚµ¿ÀûÀ¸·Î ÁöÁ¤
-	-- »ç¿ëÀÚ°¡ Á¦¾àÁ¶°Ç¸í ¹Ì ºÎ¿©½Ã ! 
-	-- ¿¡·¯ ¹ß»ı½Ã SYS_xxxx·Î Ãâ·ÂµÊ 
+--4. ì œì•½ì¡°ê±´ëª…ì„ ì˜¤ë¼í´ ì—”ì§„ì´ ìë™ì ìœ¼ë¡œ ì§€ì •
+	-- ì‚¬ìš©ìê°€ ì œì•½ì¡°ê±´ëª… ë¯¸ ë¶€ì—¬ì‹œ !
+	-- ì—ëŸ¬ ë°œìƒì‹œ SYS_xxxxë¡œ ì¶œë ¥ë¨
 drop table emp02;
 create table emp02(
 	empno number(4)  unique,
 	ename varchar2(10)
 );
- ////////////constraint ¸¦ ÇÏ´Â ÀÌÀ¯´Â ÀÌ Å¸ÀÔÀÇ ¿À·ù°¡ ³¯ °æ¿ì ÀÌ ºÎºĞÀÌ ¹®Á¦¶ó´Â °ÍÀ» ¸»ÇØÁÖ´Â °ÍÀÌ´Ù.
+ ////////////constraint ë¥¼ í•˜ëŠ” ì´ìœ ëŠ” ì´ íƒ€ì…ì˜ ì˜¤ë¥˜ê°€ ë‚  ê²½ìš° ì´ ë¶€ë¶„ì´ ë¬¸ì œë¼ëŠ” ê²ƒì„ ë§í•´ì£¼ëŠ” ê²ƒì´ë‹¤.
 select constraint_name, constraint_type, table_name
 from user_constraints where table_name='EMP02';
 
@@ -161,24 +161,24 @@ insert into emp02 values(1, 'master');
 
 
 
---5. pk¼³Á¤
-	-- ÄÃ·³ ·¹º§´ÜÀ§ 
+--5. pkì„¤ì •
+	-- ì»¬ëŸ¼ ë ˆë²¨ë‹¨ìœ„
 drop table emp02;
 
 create table emp02(
 	empno number(4) constraint emp02_pk_empno primary key,
-	ename varchar2(10) not null 
+	ename varchar2(10) not null
 );
 insert into emp02 values(1, 'tester');
 insert into emp02 values(1, 'master');
 
 
-	-- table ·¹º§ ´ÜÀ§ 
+	-- table ë ˆë²¨ ë‹¨ìœ„
 drop table emp02;
 
 create table emp02(
 	empno number(4),
-	ename varchar2(10) not null ,  
+	ename varchar2(10) not null ,
 	constraint emp02_pk_empno primary key(empno)
 );
 
@@ -188,11 +188,11 @@ insert into emp02 values(1, 'master');
 
 
 
---6. ¿Ü·¡Å°[ÂüÁ¶Å°]
--- ÀÌ¹Ì Á¦¾àÁ¶°ÇÀÌ ¼³Á¤µÈ dept tableÀÇ pkÄÃ·³ÀÎ deptno°ªÀ» ±âÁØÀ¸·Î emp02ÀÇ
-	--Æ¯Á¤ ÄÃ·³ÀÌ ÂüÁ¶ÇÏ´Â ±¸Á¶ °³¹ß
-	-- dept¿¡ ¹Ì Á¸ÀçÇÏ´Â µ¥ÀÌÅÍ ÀúÀå½Ãµµ? ºÒ°¡
-	-- deptÀÇ µ¥ÀÌÅÍ¸¦ ÂüÁ¶ÇÏ°í ÀÖ´Â »óÅÂ¿¡¼­ dept table deptno°ª »èÁ¦½Ãµµ? 
+--6. ì™¸ë˜í‚¤[ì°¸ì¡°í‚¤]
+-- ì´ë¯¸ ì œì•½ì¡°ê±´ì´ ì„¤ì •ëœ dept tableì˜ pkì»¬ëŸ¼ì¸ deptnoê°’ì„ ê¸°ì¤€ìœ¼ë¡œ emp02ì˜
+	--íŠ¹ì • ì»¬ëŸ¼ì´ ì°¸ì¡°í•˜ëŠ” êµ¬ì¡° ê°œë°œ
+	-- deptì— ë¯¸ ì¡´ì¬í•˜ëŠ” ë°ì´í„° ì €ì¥ì‹œë„? ë¶ˆê°€
+	-- deptì˜ ë°ì´í„°ë¥¼ ì°¸ì¡°í•˜ê³  ìˆëŠ” ìƒíƒœì—ì„œ dept table deptnoê°’ ì‚­ì œì‹œë„?
 drop table emp02;
 
 create table emp02(
@@ -203,16 +203,16 @@ create table emp02(
 
 
 insert into emp02 values(1, 'tester', 10);
---insert into emp02 values(2, 'master', 50); //ºÒ°¡
+--insert into emp02 values(2, 'master', 50); //ë¶ˆê°€
 select * from emp02;
--- drop table dept;//emp01ÀÇ ÄÃ·³¿¡¼­ ÂüÁ¶ÇÏ´Â µ¥ÀÌÅÍ Á¸ÀçÇÏ´ÂÇÑ »èÁ¦ ºÒ°¡ 
+-- drop table dept;//emp01ì˜ ì»¬ëŸ¼ì—ì„œ ì°¸ì¡°í•˜ëŠ” ë°ì´í„° ì¡´ì¬í•˜ëŠ”í•œ ì‚­ì œ ë¶ˆê°€
 
 
---7. 6¹øÀÇ ³»¿ëÀ» table ·¹º§ ´ÜÀ§·Î ¼³Á¤ÇØ º¸±â
+--7. 6ë²ˆì˜ ë‚´ìš©ì„ table ë ˆë²¨ ë‹¨ìœ„ë¡œ ì„¤ì •í•´ ë³´ê¸°
 drop table emp02;
 
 create table emp02(
-	empno number(4) 
+	empno number(4)
 	ename varchar2(10) not null,
 	deptno number(4),
 	constraint empo2_fk_deptno  foreign key(deptno) references dept(deptno)
@@ -224,16 +224,16 @@ insert into emp02 values(2, 'master', 60);
 
 
 --8.?
-/* emp01°ú dept01 table »ı¼º
+/* emp01ê³¼ dept01 table ìƒì„±
 
-´Ü, dept01Àº deptno°¡ pk¿©¾ß¸¸ ÇÔ
+ë‹¨, dept01ì€ deptnoê°€ pkì—¬ì•¼ë§Œ í•¨
 
-test µ¥ÀÌÅÍ 2°³ Á¤µµ¸¸ ÀúÀå
+test ë°ì´í„° 2ê°œ ì •ë„ë§Œ ì €ì¥
 
-emp01Àº dept01ÀÇ deptno¸¦ ÂüÁ¶ 
+emp01ì€ dept01ì˜ deptnoë¥¼ ì°¸ì¡°
 
-´Ü, Á¦¾àÁ¶°Ç¸í ¸í½Ã, Á¦¾àÁ¶°Ç Å×ÀÌºí ·¹º§ ´ÜÀ§·Î °³¹ß 
-*/ 
+ë‹¨, ì œì•½ì¡°ê±´ëª… ëª…ì‹œ, ì œì•½ì¡°ê±´ í…Œì´ë¸” ë ˆë²¨ ë‹¨ìœ„ë¡œ ê°œë°œ
+*/
 
 
 drop table dept01;
@@ -267,18 +267,18 @@ insert into dept01 values(30, 'teasdf', 'sd');
 
 
 
---9. ÀÌ¹Ì Á¸ÀçÇÏ´Â table¿¡ Á¦¾àÁ¶°Ç Ãß°¡ÇÏ´Â ¸í·É¾î 
+--9. ì´ë¯¸ ì¡´ì¬í•˜ëŠ” tableì— ì œì•½ì¡°ê±´ ì¶”ê°€í•˜ëŠ” ëª…ë ¹ì–´
 drop table emp01;
 drop table emp02;
 
 create table dept01 as select * from dept;
 create table emp01 as select * from emp;
 
---dept01 table¿¡ pk ¼³Á¤ 
+--dept01 tableì— pk ì„¤ì •
 alter table dept01 add constraint dept01_deptno_pk primary
 key(depno)
 
---emp01 table¿¡ fk ¼³Á¤
+--emp01 tableì— fk ì„¤ì •
 alter table emp01 add constraint emp01_deptno_fk foreign
 key(depno) references dept01(deptno);
 
@@ -293,17 +293,17 @@ from user_constraints where table_name='EMP01';
 
 
 
---10. ÂüÁ¶ ´çÇÏ´Â keyÀÇ ÄÃ·³ÀÌ¶ó ÇÏ´õ¶óµµ ÀÚ½Ä table¿¡¼­ ¹Ì »ç¿ëµÇ´Â µ¥ÀÌÅÍ¿¡ ÇÑÇØ¼­´Â
-	-- »èÁ¦ °¡´É  
--- emp01ÀÌ ÀÌ¹Ì ÂüÁ¶ÇÏ´Â µ¥ÀÌÅÍ°¡ ÀÖ´Â dept01 table »èÁ¦ÇØº¸±â 
-	-- 8+9ÀÇ sql¹®Àå À¯Áö 
--- drop table dept01;  //»èÁ¦ ºÒ°¡
--- delete from dept01 where deptno=30; //»èÁ¦ ºÒ°¡ 
-	delete from dept01 where deptno=40; --»èÁ¦ ok
+--10. ì°¸ì¡° ë‹¹í•˜ëŠ” keyì˜ ì»¬ëŸ¼ì´ë¼ í•˜ë”ë¼ë„ ìì‹ tableì—ì„œ ë¯¸ ì‚¬ìš©ë˜ëŠ” ë°ì´í„°ì— í•œí•´ì„œëŠ”
+	-- ì‚­ì œ ê°€ëŠ¥
+-- emp01ì´ ì´ë¯¸ ì°¸ì¡°í•˜ëŠ” ë°ì´í„°ê°€ ìˆëŠ” dept01 table ì‚­ì œí•´ë³´ê¸°
+	-- 8+9ì˜ sqlë¬¸ì¥ ìœ ì§€
+-- drop table dept01;  //ì‚­ì œ ë¶ˆê°€
+-- delete from dept01 where deptno=30; //ì‚­ì œ ë¶ˆê°€
+	delete from dept01 where deptno=40; --ì‚­ì œ ok
 
 
 
---11. check : if Á¶°Ç½Ä°ú °°ÀÌ ÀúÀåÁ÷ÀüÀÇ µ¥ÀÌÅÍÀÇ À¯È¿ À¯¹« °ËÁõÇÏ´Â Á¦¾àÁ¶°Ç 
+--11. check : if ì¡°ê±´ì‹ê³¼ ê°™ì´ ì €ì¥ì§ì „ì˜ ë°ì´í„°ì˜ ìœ íš¨ ìœ ë¬´ ê²€ì¦í•˜ëŠ” ì œì•½ì¡°ê±´
 drop table emp01;
 
 create table emp01(
@@ -313,14 +313,14 @@ create table emp01(
 
 
 insert into emp01 values('masster', 10);
-insert into emp01 values('master', 102 --¿À·ù 1ºÎÅÍ 100±îÁö¸¸ À¯È¿ -- ÀÌ·±½ÄÀ¸·Î ¿¹¿Ü Ã³¸®¸¦ ÇÏÀÚ 
+insert into emp01 values('master', 102 --ì˜¤ë¥˜ 1ë¶€í„° 100ê¹Œì§€ë§Œ ìœ íš¨ -- ì´ëŸ°ì‹ìœ¼ë¡œ ì˜ˆì™¸ ì²˜ë¦¬ë¥¼ í•˜ì
 select * from emp01;
 select table_name, constraint_type, constraint_name
 	from user_constraints where table_name='EMP01';
 
-	
-	
--- 12.? gender¶ó´Â ÄÃ·³¿¡´Â µ¥ÀÌÅÍ°¡ M ¶Ç´Â F¸¸ ÀúÀåµÇ¾î¾ß ÇÔ
+
+
+-- 12.? genderë¼ëŠ” ì»¬ëŸ¼ì—ëŠ” ë°ì´í„°ê°€ M ë˜ëŠ” Fë§Œ ì €ì¥ë˜ì–´ì•¼ í•¨
 drop table emp01;
 create table emp01(
 	id varchar2(10) primary key,
@@ -331,12 +331,12 @@ create table emp01(
 
 
 insert into emp01 values('maswewer', 'M');
-insert into emp01 values('master', 'T'); //ºÒ°¡ 
+insert into emp01 values('master', 'T'); //ë¶ˆê°€
 select * from emp01;
 
 
 
---13. default : insert½Ã¿¡ µ¥ÀÌÅÍ¸¦ »ı·«ÇØµµ ÀÚµ¿À¸·Î db¿¡ ÀúÀåµÇ´Â ±âº»°ª 
+--13. default : insertì‹œì— ë°ì´í„°ë¥¼ ìƒëµí•´ë„ ìë™ìœ¼ë¡œ dbì— ì €ì¥ë˜ëŠ” ê¸°ë³¸ê°’
 drop table emp01;
 
 create table emp01(
@@ -349,6 +349,6 @@ insert into emp01 values('tester', 'M');
 select * from emp01;
 
 
-	
-	
+
+
 	
